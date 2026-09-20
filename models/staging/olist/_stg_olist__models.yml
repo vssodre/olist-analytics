@@ -10,3 +10,17 @@ models:
       - name: customer_id
         data_tests:
           - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_olist__customers')
+                field: customer_id
+
+  - name: stg_olist__customers
+    columns:
+      - name: customer_id
+        data_tests:
+          - not_null
+          - unique
+      - name: customer_unique_id
+        data_tests:
+          - not_null
