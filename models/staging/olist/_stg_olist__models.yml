@@ -24,3 +24,31 @@ models:
       - name: customer_unique_id
         data_tests:
           - not_null
+
+  - name: stg_olist__order_items
+    columns:
+      - name: order_item_key
+        data_tests:
+          - not_null
+          - unique
+      - name: order_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_olist__orders')
+                field: order_id
+
+  - name: stg_olist__order_payments
+    columns:
+      - name: payment_key
+        data_tests:
+          - not_null
+          - unique
+      - name: order_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_olist__orders')
+                field: order_id
